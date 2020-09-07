@@ -1,40 +1,60 @@
 package effectivejava.chapter2.item2.javabeans;
+
 /**
- * JavaBeans Pattern - allows inconsistency, mandates mutability  (pages 11-12)
+ * JavaBeans Pattern - allows inconsistency, mandates mutability (pages 11-12)
  * 
- *  Unfortunately, the JavaBeans pattern has serious disadvantages of its own.
- *	Because construction is split across multiple calls, a JavaBean may be in an inconsistent state partway through its construction.
+ * Unfortunately, the JavaBeans pattern has serious disadvantages of its own.
+ * Because construction is split across multiple calls, a JavaBean may be in an
+ * inconsistent state partway through its construction.
  *
- *  The JavaBeans pattern precludes the possibility of making a class immutable (Item 17) and requires
-	added effort on the part of the programmer to ensure thread safety.
+ * The JavaBeans pattern precludes the possibility of making a class immutable
+ * (Item 17) and requires added effort on the part of the programmer to ensure
+ * thread safety.
  */
 
 public class NutritionFacts {
     // Parameters initialized to default values (if any)
-    private int servingSize  = -1; // Required; no default value
-    private int servings     = -1; // Required; no default value
-    private int calories     = 0;
-    private int fat          = 0;
-    private int sodium       = 0;
+    private int servingSize = -1; // Required; no default value
+    private int servings = -1; // Required; no default value
+    private int calories = 0;
+    private int fat = 0;
+    private int sodium = 0;
     private int carbohydrate = 0;
 
-    public NutritionFacts() { }
+    public NutritionFacts() {
+    }
+
     // Setters
-	public void setServingSize(int val) {
-		servingSize = val;
-	}
-    public void setServings(int val)     { servings = val; }
-    public void setCalories(int val)     { calories = val; }
-    public void setFat(int val)          { fat = val; }
-    public void setSodium(int val)       { sodium = val; }
-    public void setCarbohydrate(int val) { carbohydrate = val; }
+    public void setServingSize(int val) {
+	servingSize = val;
+    }
+
+    public void setServings(int val) {
+	servings = val;
+    }
+
+    public void setCalories(int val) {
+	calories = val;
+    }
+
+    public void setFat(int val) {
+	fat = val;
+    }
+
+    public void setSodium(int val) {
+	sodium = val;
+    }
+
+    public void setCarbohydrate(int val) {
+	carbohydrate = val;
+    }
 
     public static void main(String[] args) {
-        NutritionFacts cocaCola = new NutritionFacts();
-        cocaCola.setServingSize(240);
-        cocaCola.setServings(8);
-        cocaCola.setCalories(100);
-        cocaCola.setSodium(35);
-        cocaCola.setCarbohydrate(27);
+	NutritionFacts cocaCola = new NutritionFacts();
+	cocaCola.setServingSize(240);
+	cocaCola.setServings(8);
+	cocaCola.setCalories(100);
+	cocaCola.setSodium(35);
+	cocaCola.setCarbohydrate(27);
     }
 }
