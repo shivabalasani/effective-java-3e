@@ -10,11 +10,14 @@ import java.util.*;
  * example, many existing classes were retrofitted to implement the Comparable,
  * Iterable, and Autocloseable interfaces when they were added to the platform.
  * 
- * Interfaces are ideal for defining mixins.
+ * Interfaces are ideal for defining mixins.For example, Comparable is a mixin
+ * interface that allows a class to declare that its instances are ordered with
+ * respect to other mutually comparable objects.
  * 
  * Interfaces allow for the construction of nonhierarchical type frameworks.
  * 
- * Interfaces enable safe, powerful functionality enhancements
+ * Interfaces enable safe, powerful functionality enhancements via the wrapper
+ * class idiom (Item 18).
  *
  */
 // Skeletal implementation class (Pages 102-3)

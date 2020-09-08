@@ -49,29 +49,29 @@ package effectivejava.chapter4.item15;
  */
 public class Encapsulation {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-	// Note that a nonzero-length array is always mutable, so it is wrong for a
-	// class to have a public static final array field, or an accessor that returns
-	// such a field.
+		// Note that a nonzero-length array is always mutable, so it is wrong for a
+		// class to have a public static final array field, or an accessor that returns
+		// such a field.
 
-	// Potential security hole!
-	// public static final Thing[] VALUES = { ... };
+		// Potential security hole!
+		// public static final Thing[] VALUES = { ... };
 
-	// There are two ways to fix the problem.
+		// There are two ways to fix the problem.
 
-	// 1. You can make the public array private and add a public immutable list:
+		// 1. You can make the public array private and add a public immutable list:
 
-	// private static final Thing[] PRIVATE_VALUES = { ... };
-	// public static final List<Thing> VALUES =
-	// Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
+		// private static final Thing[] PRIVATE_VALUES = { ... };
+		// public static final List<Thing> VALUES =
+		// Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
 
-	// 2. Alternatively, you can make the array private and add a public method that
-	// returns a copy of a private array:
+		// 2. Alternatively, you can make the array private and add a public method that
+		// returns a copy of a private array:
 
-	// private static final Thing[] PRIVATE_VALUES = { ... };
-	// public static final Thing[] values() {
-	// return PRIVATE_VALUES.clone();
-	// }
-    }
+		// private static final Thing[] PRIVATE_VALUES = { ... };
+		// public static final Thing[] values() {
+		// return PRIVATE_VALUES.clone();
+		// }
+	}
 }
