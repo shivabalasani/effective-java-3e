@@ -18,6 +18,14 @@ import java.util.*;
  * 
  * Interfaces enable safe, powerful functionality enhancements via the wrapper
  * class idiom (Item 18).
+ * 
+ * To summarize, an interface is generally the best way to define a type that
+ * permits multiple implementations. If you export a nontrivial interface, you
+ * should strongly consider providing a skeletal implementation to go with it.
+ * To the extent possible, you should provide the skeletal implementation via
+ * default methods on the interface so that all implementors of the interface
+ * can make use of it. That said, restrictions on interfaces typically mandate
+ * that a skeletal implementation take the form of an abstract class.
  *
  */
 // Skeletal implementation class (Pages 102-3)
