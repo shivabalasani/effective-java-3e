@@ -1,4 +1,5 @@
 package effectivejava.chapter6.item39.annotationwitharrayparameter;
+
 import java.lang.annotation.*;
 
 // Annotation type with an array parameter  (Page 184)

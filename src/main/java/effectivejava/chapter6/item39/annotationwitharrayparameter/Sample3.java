@@ -2,30 +2,42 @@ package effectivejava.chapter6.item39.annotationwitharrayparameter;
 
 import java.util.*;
 
+/**
+ * 
+ * The syntax for array parameters in annotations is flexible. It is optimized
+ * for single-element arrays. All of the previous ExceptionTest annotations are
+ * still valid with the new array-parameter version of ExceptionTest and result
+ * in single-element arrays. To specify a multiple-element array, surround the
+ * elements with curly braces and separate them with commas:
+ *
+ */
 // Program containing an annotation with an array parameter (Page 185)
 public class Sample3 {
-    // This variant can process annotations whose parameter is a single element (identical to those on page 183)
+    // This variant can process annotations whose parameter is a single element
+    // (identical to those on page 183)
     @ExceptionTest(ArithmeticException.class)
-    public static void m1() {  // Test should pass
-        int i = 0;
-        i = i / i;
+    public static void m1() { // Test should pass
+	int i = 0;
+	i = i / i;
     }
+
     @ExceptionTest(ArithmeticException.class)
-    public static void m2() {  // Should fail (wrong exception)
-        int[] a = new int[0];
-        int i = a[1];
+    public static void m2() { // Should fail (wrong exception)
+	int[] a = new int[0];
+	int i = a[1];
     }
+
     @ExceptionTest(ArithmeticException.class)
-    public static void m3() { }  // Should fail (no exception)
+    public static void m3() {
+    } // Should fail (no exception)
 
     // Code containing an annotation with an array parameter (Page 185)
-    @ExceptionTest({ IndexOutOfBoundsException.class,
-                     NullPointerException.class })
-    public static void doublyBad() {   // Should pass
-        List<String> list = new ArrayList<>();
+    @ExceptionTest({ IndexOutOfBoundsException.class, NullPointerException.class })
+    public static void doublyBad() { // Should pass
+	List<String> list = new ArrayList<>();
 
-        // The spec permits this method to throw either
-        // IndexOutOfBoundsException or NullPointerException
-        list.addAll(5, null);
+	// The spec permits this method to throw either
+	// IndexOutOfBoundsException or NullPointerException
+	list.addAll(5, null);
     }
 }
