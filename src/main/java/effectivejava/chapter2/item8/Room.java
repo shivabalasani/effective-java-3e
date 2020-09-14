@@ -2,11 +2,17 @@ package effectivejava.chapter2.item8;
 
 import java.lang.ref.Cleaner;
 
-// An autocloseable class using a cleaner as a safety net (Page 32)
-// So what should you do instead of writing a finalizer or cleaner for a class
-// whose objects encapsulate resources that require termination, such as files or
-// threads? Just have your class implement AutoCloseable, and require its clients
-// to invoke the close method on each instance when it is no longer needed,
+/**
+ * 
+ * An autocloseable class using a cleaner as a safety net (Page 32) So what
+ * should you do instead of writing a finalizer or cleaner for a class whose
+ * objects encapsulate resources that require termination, such as files or
+ * threads? Just have your class implement AutoCloseable, and require its
+ * clients to invoke the close method on each instance when it is no longer
+ * needed.
+ *
+ */
+
 public class Room implements AutoCloseable {
 	private static final Cleaner cleaner = Cleaner.create();
 

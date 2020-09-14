@@ -27,11 +27,11 @@ public class Swap {
 	public static void swap(List<?> list, int i, int j) {
 		// Swap.java:5: error: incompatible types: Object cannot be
 		// converted to CAP#1
-		
+
 		// It doesn’t seem right that we can’t put an element back into the list that we
 		// just took it out of. The problem is that the type of list is List<?>, and you
 		// can’t put any value except null into a List<?>.
-		
+
 		// list.set(i, list.set(j, list.get(i)));
 		swapHelper(list, i, j);
 	}

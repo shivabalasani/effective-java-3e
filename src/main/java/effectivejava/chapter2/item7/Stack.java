@@ -4,20 +4,22 @@ import java.util.*;
 
 /**
  * 
- * - Item 7: Eliminate obsolete object references
+ * Item 7: Eliminate obsolete object references
  * 
- * - Nulling out object references should be the exception rather than the norm.
- *   The best way to eliminate an obsolete reference is to let the variable that contained the reference 
- *   fall out of scope. This occurs naturally if you define each variable in the narrowest possible scope (Item 57)
+ * Nulling out object references should be the exception rather than the norm.
+ * The best way to eliminate an obsolete reference is to let the variable that
+ * contained the reference fall out of scope. This occurs naturally if you
+ * define each variable in the narrowest possible scope (Item 57)
  * 
- * - Generally speaking, whenever a class manages its own memory, the programmer should be alert for memory leaks. 
- *   Whenever an element is freed, any object references contained in the element should be nulled out.
+ * Generally speaking, whenever a class manages its own memory, the programmer
+ * should be alert for memory leaks. Whenever an element is freed, any object
+ * references contained in the element should be nulled out.
  * 
- * - Another common source of memory leaks is caches.
- *  
- * - A third common source of memory leaks is listeners and other callbacks.
+ * Another common source of memory leaks is caches.
  * 
- * - Debug memory leaks using tools like heap profiler.
+ * A third common source of memory leaks is listeners and other callbacks.
+ * 
+ * Debug memory leaks using tools like heap profiler.
  *
  */
 // Can you spot the "memory leak"?  (Pages 26-27)
@@ -50,20 +52,22 @@ public class Stack {
 			elements = Arrays.copyOf(elements, 2 * size + 1);
 	}
 
-	// If a stack grows and then shrinks, the objects that were popped off the stack will 
-	//not be garbage collected, even if the program using the stack has no more references 
-	//to them. This is because the stack maintains obsolete references to these objects.
-	//An obsolete reference is simply a reference that will never be dereferenced again.
-	
-   // Corrected version of pop method (Page 27)
-    public Object popCorrectedVersion() {
-        if (size == 0)
-            throw new EmptyStackException();
-        Object result = elements[--size];
-        //null out object references once they  become obsolete.
-        elements[size] = null; // Eliminate obsolete reference
-        return result;
-    }
+	// If a stack grows and then shrinks, the objects that were popped off the stack
+	// will not be garbage collected, even if the program using the stack has no
+	// more references to them. This is because the stack maintains obsolete
+	// references to these objects.
+	// An obsolete reference is simply a reference that will never be dereferenced
+	// again.
+
+	// Corrected version of pop method (Page 27)
+	public Object popCorrectedVersion() {
+		if (size == 0)
+			throw new EmptyStackException();
+		Object result = elements[--size];
+		// null out object references once they become obsolete.
+		elements[size] = null; // Eliminate obsolete reference
+		return result;
+	}
 
 	public static void main(String[] args) {
 		Stack stack = new Stack();

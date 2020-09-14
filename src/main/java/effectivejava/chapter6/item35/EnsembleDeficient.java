@@ -20,16 +20,17 @@ package effectivejava.chapter6.item35;
 // Abuse of ordinal to derive an associated value - DON'T DO THIS
 public enum EnsembleDeficient {
 
-    SOLO, DUET, TRIO, QUARTET, QUINTET, SEXTET, SEPTET, OCTET, NONET, DECTET;
-    public int numberOfMusicians() {
-	return ordinal() + 1;
-    }
+	SOLO, DUET, TRIO, QUARTET, QUINTET, SEXTET, SEPTET, OCTET, NONET, DECTET;
 
-    public static void main(String[] args) {
-	for (EnsembleDeficient ensemble : values()) {
-	    System.out.println(ensemble.ordinal());
-	    // System.out.println(ensemble.numberOfMusicians());
+	public int numberOfMusicians() {
+		return ordinal() + 1;
 	}
-    }
+
+	public static void main(String[] args) {
+		for (EnsembleDeficient ensemble : values()) {
+			System.out.println(ensemble.ordinal());
+			// System.out.println(ensemble.numberOfMusicians());
+		}
+	}
 
 }

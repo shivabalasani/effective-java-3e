@@ -7,16 +7,20 @@ import java.util.Objects;
  * 
  * Item 5: Prefer dependency injection to hard wiring resources.
  * 
- * Static utility classes and singletons are inappropriate for classes whose behavior is parameterized by an underlying resource.
+ * Static utility classes and singletons are inappropriate for classes whose
+ * behavior is parameterized by an underlying resource.
  * 
- * A useful variant of the pattern is to pass a resource factory to the constructor. The Supplier<T> interface, introduced in Java 8, is perfect for representing factories.
- * Here is a method that makes a mosaic using a client-provided factory to produce each tile:
+ * A useful variant of the pattern is to pass a resource factory to the
+ * constructor. The Supplier<T> interface, introduced in Java 8, is perfect for
+ * representing factories. Here is a method that makes a mosaic using a
+ * client-provided factory to produce each tile:
+ * 
  * Mosaic create(Supplier<? extends Tile> tileFactory) { ... }
  *
  */
 //Dependency injection provides flexibility and testability
 public class SpellChecker {
-	//private final Lexicon dictionary
+	// private final Lexicon dictionary
 	private final List dictionary;
 
 	public SpellChecker(List dictionary) {

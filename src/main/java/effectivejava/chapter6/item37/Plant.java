@@ -42,65 +42,65 @@ import static java.util.stream.Collectors.toSet;
 
 // Simplistic class representing a plant (Page 171)
 class Plant {
-    enum LifeCycle {
-	ANNUAL, PERENNIAL, BIENNIAL
-    }
-
-    final String name;
-    final LifeCycle lifeCycle;
-
-    Plant(String name, LifeCycle lifeCycle) {
-	this.name = name;
-	this.lifeCycle = lifeCycle;
-    }
-
-    @Override
-    public String toString() {
-	return name;
-    }
-
-    public static void main(String[] args) {
-	Plant[] garden = { new Plant("Basil", LifeCycle.ANNUAL), new Plant("Carroway", LifeCycle.BIENNIAL),
-		new Plant("Dill", LifeCycle.ANNUAL), new Plant("Lavendar", LifeCycle.PERENNIAL),
-		new Plant("Parsley", LifeCycle.BIENNIAL), new Plant("Rosemary", LifeCycle.PERENNIAL) };
-
-	// Using ordinal() to index into an array - DON'T DO THIS! (Page 171)
-	Set<Plant>[] plantsByLifeCycleArr = (Set<Plant>[]) new Set[Plant.LifeCycle.values().length];
-	for (int i = 0; i < plantsByLifeCycleArr.length; i++)
-	    plantsByLifeCycleArr[i] = new HashSet<>();
-	for (Plant p : garden)
-	    plantsByLifeCycleArr[p.lifeCycle.ordinal()].add(p);
-	// Print the results
-	for (int i = 0; i < plantsByLifeCycleArr.length; i++) {
-	    System.out.printf("%s: %s%n", Plant.LifeCycle.values()[i], plantsByLifeCycleArr[i]);
+	enum LifeCycle {
+		ANNUAL, PERENNIAL, BIENNIAL
 	}
 
-	// ----------------------------------------------------------------------------------------
-	// Solution 1 : Using an EnumMap to associate data with an enum (Page 172)
-	Map<Plant.LifeCycle, Set<Plant>> plantsByLifeCycle = new EnumMap<>(Plant.LifeCycle.class);
-	for (Plant.LifeCycle lc : Plant.LifeCycle.values())
-	    plantsByLifeCycle.put(lc, new HashSet<>());
-	for (Plant p : garden)
-	    plantsByLifeCycle.get(p.lifeCycle).add(p);
-	System.out.println(plantsByLifeCycle);
+	final String name;
+	final LifeCycle lifeCycle;
 
-	// ----------------------------------------------------------------------------------------
-	// Solution 2 : Naive stream-based approach - unlikely to produce an EnumMap!
-	// (Page 172)
+	Plant(String name, LifeCycle lifeCycle) {
+		this.name = name;
+		this.lifeCycle = lifeCycle;
+	}
 
-	// The problem with below code is that it chooses its own map implementation,
-	// and in practice it won’t be an EnumMap, so it won’t match the space and time
-	// performance of the version with the explicit EnumMap.
-	System.out.println(Arrays.stream(garden).collect(groupingBy(p -> p.lifeCycle)));
+	@Override
+	public String toString() {
+		return name;
+	}
 
-	// ----------------------------------------------------------------------------------------
-	// Solution 3: Using a stream and an EnumMap to associate data with an enum
-	// (Page 173)
+	public static void main(String[] args) {
+		Plant[] garden = { new Plant("Basil", LifeCycle.ANNUAL), new Plant("Carroway", LifeCycle.BIENNIAL),
+				new Plant("Dill", LifeCycle.ANNUAL), new Plant("Lavendar", LifeCycle.PERENNIAL),
+				new Plant("Parsley", LifeCycle.BIENNIAL), new Plant("Rosemary", LifeCycle.PERENNIAL) };
 
-	// To rectify above problem, use the three parameter form of
-	// Collectors.groupingBy, which allows the caller to specify
-	// the map implementation using the mapFactory parameter
-	System.out.println(Arrays.stream(garden)
-		.collect(groupingBy(p -> p.lifeCycle, () -> new EnumMap<>(LifeCycle.class), toSet())));
-    }
+		// Using ordinal() to index into an array - DON'T DO THIS! (Page 171)
+		Set<Plant>[] plantsByLifeCycleArr = (Set<Plant>[]) new Set[Plant.LifeCycle.values().length];
+		for (int i = 0; i < plantsByLifeCycleArr.length; i++)
+			plantsByLifeCycleArr[i] = new HashSet<>();
+		for (Plant p : garden)
+			plantsByLifeCycleArr[p.lifeCycle.ordinal()].add(p);
+		// Print the results
+		for (int i = 0; i < plantsByLifeCycleArr.length; i++) {
+			System.out.printf("%s: %s%n", Plant.LifeCycle.values()[i], plantsByLifeCycleArr[i]);
+		}
+
+		// ----------------------------------------------------------------------------------------
+		// Solution 1 : Using an EnumMap to associate data with an enum (Page 172)
+		Map<Plant.LifeCycle, Set<Plant>> plantsByLifeCycle = new EnumMap<>(Plant.LifeCycle.class);
+		for (Plant.LifeCycle lc : Plant.LifeCycle.values())
+			plantsByLifeCycle.put(lc, new HashSet<>());
+		for (Plant p : garden)
+			plantsByLifeCycle.get(p.lifeCycle).add(p);
+		System.out.println(plantsByLifeCycle);
+
+		// ----------------------------------------------------------------------------------------
+		// Solution 2 : Naive stream-based approach - unlikely to produce an EnumMap!
+		// (Page 172)
+
+		// The problem with below code is that it chooses its own map implementation,
+		// and in practice it won’t be an EnumMap, so it won’t match the space and time
+		// performance of the version with the explicit EnumMap.
+		System.out.println(Arrays.stream(garden).collect(groupingBy(p -> p.lifeCycle)));
+
+		// ----------------------------------------------------------------------------------------
+		// Solution 3: Using a stream and an EnumMap to associate data with an enum
+		// (Page 173)
+
+		// To rectify above problem, use the three parameter form of
+		// Collectors.groupingBy, which allows the caller to specify
+		// the map implementation using the mapFactory parameter
+		System.out.println(Arrays.stream(garden)
+				.collect(groupingBy(p -> p.lifeCycle, () -> new EnumMap<>(LifeCycle.class), toSet())));
+	}
 }

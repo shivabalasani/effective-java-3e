@@ -1,23 +1,28 @@
 package effectivejava.chapter2.item6;
+
 import java.util.regex.Pattern;
 
 /**
  * 
- * - Item 6: Avoid creating unnecessary objects
+ * Item 6: Avoid creating unnecessary objects
  * 
  * String s = new String("bikini"); // DON'T DO THIS!
+ * 
  * String s = "bikini"; //Improved version
- * This version uses a single String instance, rather than creating a new one each time it is executed.
- * Furthermore, it is guaranteed that the object will be reused by any other code running in the same virtual machine 
- * that happens to contain the same string literal
+ * 
+ * This version uses a single String instance, rather than creating a new one
+ * each time it is executed. Furthermore, it is guaranteed that the object will
+ * be reused by any other code running in the same virtual machine that happens
+ * to contain the same string literal
  *
  */
 // Reusing expensive object for improved performance (Pages 22 and 23)
 public class RomanNumerals {
 	// Performance can be greatly improved! (Page 22)
-	
+
 	// While String.matches is the easiest way to check if a string matches a
-	// regular expression, it’s not suitable for repeated use in performance-critical situations.
+	// regular expression, it’s not suitable for repeated use in
+	// performance-critical situations.
 	static boolean isRomanNumeralSlow(String s) {
 		return s.matches("^(?=.)M*(C[MD]|D?C{0,3})" + "(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$");
 	}

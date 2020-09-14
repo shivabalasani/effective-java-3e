@@ -44,52 +44,53 @@ import java.util.*;
 
 // Emulated extensible enum (Pages 176-9)
 public enum ExtendedOperation implements Operation {
-    EXP("^") {
-	public double apply(double x, double y) {
-	    return Math.pow(x, y);
+	EXP("^") {
+		public double apply(double x, double y) {
+			return Math.pow(x, y);
+		}
+	},
+	REMAINDER("%") {
+		public double apply(double x, double y) {
+			return x % y;
+		}
+	};
+
+	private final String symbol;
+
+	ExtendedOperation(String symbol) {
+		this.symbol = symbol;
 	}
-    },
-    REMAINDER("%") {
-	public double apply(double x, double y) {
-	    return x % y;
+
+	@Override
+	public String toString() {
+		return symbol;
 	}
-    };
-    private final String symbol;
 
-    ExtendedOperation(String symbol) {
-	this.symbol = symbol;
-    }
+	public static void main(String[] args) {
+		double x = Double.parseDouble("5.0");
+		double y = Double.parseDouble("2.0");
 
-    @Override
-    public String toString() {
-	return symbol;
-    }
+		// Note class literal for the extended operation type (ExtendedOperation.class)
+		// is passed from main to test to describe the set of extended operations.The
+		// class literal serves as a bounded type token (Item 33).
+		test(ExtendedOperation.class, x, y);
 
-    public static void main(String[] args) {
-	double x = Double.parseDouble("5.0");
-	double y = Double.parseDouble("2.0");
+		// A second alternative is to pass a Collection<? extends Operation>, which
+		// is a bounded wildcard type (Item 31), instead of passing a class object:
+		test(Arrays.asList(ExtendedOperation.values()), x, y);
+	}
 
-	// Note class literal for the extended operation type (ExtendedOperation.class)
-	// is passed from main to test to describe the set of extended operations.The
-	// class literal serves as a bounded type token (Item 33).
-	test(ExtendedOperation.class, x, y);
+	// Version 1 : Using an enum class object to represent a collection of extended
+	// enums (page 178)
+	private static <T extends Enum<T> & Operation> void test(Class<T> opEnumType, double x, double y) {
+		for (Operation op : opEnumType.getEnumConstants())
+			System.out.printf("%f %s %f = %f%n", x, op, y, op.apply(x, y));
+	}
 
-	// A second alternative is to pass a Collection<? extends Operation>, which
-	// is a bounded wildcard type (Item 31), instead of passing a class object:
-	test(Arrays.asList(ExtendedOperation.values()), x, y);
-    }
-
-    // Version 1 : Using an enum class object to represent a collection of extended
-    // enums (page 178)
-    private static <T extends Enum<T> & Operation> void test(Class<T> opEnumType, double x, double y) {
-	for (Operation op : opEnumType.getEnumConstants())
-	    System.out.printf("%f %s %f = %f%n", x, op, y, op.apply(x, y));
-    }
-
-    // Version 2 : Using a collection instance to represent a collection of extended
-    // enums (page 178)
-    private static void test(Collection<? extends Operation> opSet, double x, double y) {
-	for (Operation op : opSet)
-	    System.out.printf("%f %s %f = %f%n", x, op, y, op.apply(x, y));
-    }
+	// Version 2 : Using a collection instance to represent a collection of extended
+	// enums (page 178)
+	private static void test(Collection<? extends Operation> opSet, double x, double y) {
+		for (Operation op : opSet)
+			System.out.printf("%f %s %f = %f%n", x, op, y, op.apply(x, y));
+	}
 }

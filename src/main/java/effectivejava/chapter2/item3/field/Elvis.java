@@ -2,9 +2,9 @@ package effectivejava.chapter2.item3.field;
 
 /**
  * 
- * The main advantage of the public field approach is that the API makes it clear
- * that the class is a singleton: the public static field is final, so it will always contain
- * the same object reference. 
+ * The main advantage of the public field approach is that the API makes it
+ * clear that the class is a singleton: the public static field is final, so it
+ * will always contain the same object reference.
  * 
  * The second advantage is that it’s simpler.
  *
@@ -15,7 +15,8 @@ public class Elvis {
 
 	// A privileged client can invoke the private constructor reflectively
 	// (Item 65) with the aid of the AccessibleObject.setAccessible method. If you
-	// need to defend against this attack, modify the constructor to make it throw an
+	// need to defend against this attack, modify the constructor to make it throw
+	// an
 	// exception if it’s asked to create a second instance.
 	private Elvis() {
 	}

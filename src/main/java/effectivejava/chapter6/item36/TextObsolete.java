@@ -19,21 +19,21 @@ package effectivejava.chapter6.item36;
  */
 // Bit field enumeration constants - OBSOLETE!
 public class TextObsolete {
-    public static final int STYLE_BOLD = 1 << 0; // 1
-    public static final int STYLE_ITALIC = 1 << 1; // 2
-    public static final int STYLE_UNDERLINE = 1 << 2; // 4
-    public static final int STYLE_STRIKETHROUGH = 1 << 3; // 8
-    // Parameter is bitwise OR of zero or more STYLE_ constants
+	public static final int STYLE_BOLD = 1 << 0; // 1
+	public static final int STYLE_ITALIC = 1 << 1; // 2
+	public static final int STYLE_UNDERLINE = 1 << 2; // 4
+	public static final int STYLE_STRIKETHROUGH = 1 << 3; // 8
+	// Parameter is bitwise OR of zero or more STYLE_ constants
 
-    public void applyStyles(int styles) {
-	System.out.println(styles);
-    }
+	public void applyStyles(int styles) {
+		System.out.println(styles);
+	}
 
-    // Sample use
-    public static void main(String[] args) {
-	TextObsolete text = new TextObsolete();
-	// This representation lets you use the bitwise OR operation to combine several
-	// constants into a set, known as a bit field:
-	text.applyStyles(STYLE_BOLD | STYLE_ITALIC);
-    }
+	// Sample use
+	public static void main(String[] args) {
+		TextObsolete text = new TextObsolete();
+		// This representation lets you use the bitwise OR operation to combine several
+		// constants into a set, known as a bit field:
+		text.applyStyles(STYLE_BOLD | STYLE_ITALIC);
+	}
 }

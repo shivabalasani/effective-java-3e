@@ -113,19 +113,19 @@ public class Raw {
 		unsafeAdd(strings, Integer.valueOf(42));
 		String s = strings.get(0); // Has compiler-generated cast
 
-		//--------------------------------------------------------------------------------------
+		// --------------------------------------------------------------------------------------
 		Set<?> s1 = new HashSet();
 		// The method add(capture#1-of ?) in the type Set<capture#1-of
 		// ?> is not applicable for the arguments (String)
 		// s1.add("str1");
-		s1.add(null); //Cannot add anything other than null
+		s1.add(null); // Cannot add anything other than null
 
 		Set<Object> s2 = new HashSet();
 		s2.add("str1");
 		s2.add(4);
 		s2.add(null);
-		
-		//--------------------------------------------------------------------------------------
+
+		// --------------------------------------------------------------------------------------
 		List<String> testList = new ArrayList<String>();
 		String str = "Add me!";
 		// addObjectToList1 doesn't compile, because you cannot add anything except null
@@ -164,7 +164,7 @@ public class Raw {
 				result++;
 		return result;
 	}
-	
+
 	private static void addObjectToList1(final List<?> aList, final Object o) {
 		// The method add(capture#4-of ?) in the type List<capture#4-of ?> is not
 		// applicable for the arguments (Object)

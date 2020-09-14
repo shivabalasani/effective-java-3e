@@ -6,12 +6,16 @@ import java.io.*;
  * 
  * - Item 9: Prefer try-with-resources to try-finally.
  * 
- * - The Java libraries include many resources that must be closed manually by invoking a close method. Examples include InputStream, OutputStream, and
- *	 java.sql.Connection. Closing resources is often overlooked by clients, with predictably dire performance consequences. While many of these resources use
- *	 finalizers as a safety net, finalizers don’t work very well (Item 8).
- *	 
- *  - All of these problems were solved in one fell swoop when Java 7 introduced the try-with-resources statement [JLS, 14.20.3]. To be usable with this construct,
- *	 a resource must implement the AutoCloseable interface, which consists of a single void-returning close method.
+ * The Java libraries include many resources that must be closed manually by
+ * invoking a close method. Examples include InputStream, OutputStream, and
+ * java.sql.Connection. Closing resources is often overlooked by clients, with
+ * predictably dire performance consequences. While many of these resources use
+ * finalizers as a safety net, finalizers don’t work very well (Item 8).
+ * 
+ * All of these problems were solved in one fell swoop when Java 7 introduced
+ * the try-with-resources statement [JLS, 14.20.3]. To be usable with this
+ * construct, a resource must implement the AutoCloseable interface, which
+ * consists of a single void-returning close method.
  *
  */
 public class Copy {
