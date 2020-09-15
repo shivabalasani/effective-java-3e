@@ -1,7 +1,5 @@
 package effectivejava.chapter7.item44;
 
-import java.util.function.BiFunction;
-
 /**
  * --------------------------------------------------------------------------
  * Binary Operator
