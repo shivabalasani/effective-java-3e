@@ -60,6 +60,40 @@ import java.util.Map;
  * the Function variants, which are parameterized by return type. For example,
  * LongFunction<int[]> takes a long and returns an int[].
  * 
+ * Most of the standard functional interfaces exist only to provide support for
+ * primitive types. Don’t be tempted to use basic functional interfaces with
+ * boxed primitives instead of primitive functional interfaces. While it works,
+ * it violates the advice of Item 61, “prefer primitive types to boxed
+ * primitives.” The performance consequences of using boxed primitives for bulk
+ * operations can be deadly.
+ * 
+ * You should seriously consider writing a purpose-built functional interface in
+ * preference to using a standard one if you need a functional interface that
+ * shares one or more of the following characteristics with Comparator:
+ * 
+ * • It will be commonly used and could benefit from a descriptive name.
+ * 
+ * • It has a strong contract associated with it.
+ * 
+ * • It would benefit from custom default methods.
+ * 
+ * FunctionalInterface serves three purposes: it tells readers of the class and
+ * its documentation that the interface was designed to enable lambdas; it keeps
+ * you honest because the interface won’t compile unless it has exactly one
+ * abstract method; and it prevents maintainers from accidentally adding
+ * abstract methods to the interface as it evolves. Always annotate your
+ * functional interfaces with the @FunctionalInterface annotation. Do not
+ * provide a method with multiple overloadings that take different functional
+ * interfaces in the same argument position if it could create a possible
+ * ambiguity in the client.
+ * 
+ * In summary, now that Java has lambdas, it is imperative that you design your
+ * APIs with lambdas in mind. Accept functional interface types on input and
+ * return them on output. It is generally best to use the standard interfaces
+ * provided in java.util.function.Function, but keep your eyes open for the
+ * relatively rare cases where you would be better off writing your own
+ * functional interface.
+ * 
  */
 
 //Unnecessary functional interface; use a standard one instead.
