@@ -24,25 +24,25 @@ import java.util.concurrent.*;
  */
 // Properly synchronized cooperative thread termination
 public class FixedStopThread1 {
-    private static boolean stopRequested;
+	private static boolean stopRequested;
 
-    private static synchronized void requestStop() {
-	stopRequested = true;
-    }
+	private static synchronized void requestStop() {
+		stopRequested = true;
+	}
 
-    private static synchronized boolean stopRequested() {
-	return stopRequested;
-    }
+	private static synchronized boolean stopRequested() {
+		return stopRequested;
+	}
 
-    public static void main(String[] args) throws InterruptedException {
-	Thread backgroundThread = new Thread(() -> {
-	    int i = 0;
-	    while (!stopRequested())
-		i++;
-	});
-	backgroundThread.start();
+	public static void main(String[] args) throws InterruptedException {
+		Thread backgroundThread = new Thread(() -> {
+			int i = 0;
+			while (!stopRequested())
+				i++;
+		});
+		backgroundThread.start();
 
-	TimeUnit.SECONDS.sleep(1);
-	requestStop();
-    }
+		TimeUnit.SECONDS.sleep(1);
+		requestStop();
+	}
 }

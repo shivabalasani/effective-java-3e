@@ -92,17 +92,17 @@ import java.util.concurrent.*;
 
 // Broken! - How long would you expect this program to run? (Page 312)
 public class BrokenStopThread {
-    private static boolean stopRequested;
+	private static boolean stopRequested;
 
-    public static void main(String[] args) throws InterruptedException {
-	Thread backgroundThread = new Thread(() -> {
-	    int i = 0;
-	    while (!stopRequested)
-		i++;
-	});
-	backgroundThread.start();
+	public static void main(String[] args) throws InterruptedException {
+		Thread backgroundThread = new Thread(() -> {
+			int i = 0;
+			while (!stopRequested)
+				i++;
+		});
+		backgroundThread.start();
 
-	TimeUnit.SECONDS.sleep(1);
-	stopRequested = true;
-    }
+		TimeUnit.SECONDS.sleep(1);
+		stopRequested = true;
+	}
 }

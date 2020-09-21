@@ -44,9 +44,9 @@ import java.io.InvalidObjectException;
  */
 public class SerializeWithCaution {
 
-    // readObjectNoData for stateful extendable serializable classes
-    private void readObjectNoData() throws InvalidObjectException {
-	throw new InvalidObjectException("Stream data required");
-    }
+	// readObjectNoData for stateful extendable serializable classes
+	private void readObjectNoData() throws InvalidObjectException {
+		throw new InvalidObjectException("Stream data required");
+	}
 
 }

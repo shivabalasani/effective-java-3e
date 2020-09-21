@@ -66,40 +66,40 @@ import java.util.NoSuchElementException;
 
 public class ExceptionsUsage {
 
-    public enum Exception {
-	NORMAL, ABNORMAL
-    }
-
-    static Collection<Exception> exceptions = Arrays.asList(Exception.values());
-
-    public static void main(String[] args) {
-
-	// Version 1 : Horrible abuse of exceptions. Don't ever do this!
-	try {
-	    int i = 0;
-	    // while (true)
-	    // range[i++].climb();
-	} catch (ArrayIndexOutOfBoundsException e) {
+	public enum Exception {
+		NORMAL, ABNORMAL
 	}
 
-	// Version 2
-	// for (Mountain m : range)
-	// m.climb();
+	static Collection<Exception> exceptions = Arrays.asList(Exception.values());
 
-	// Version 3
-	for (Iterator<Exception> i = exceptions.iterator(); i.hasNext();) {
-	    Exception foo = i.next();
-	}
+	public static void main(String[] args) {
 
-	// Version 4
-	// If Iterator lacked the hasNext method, clients would be forced to do this
-	// instead: Do not use this hideous code for iteration over a collection!
-	try {
-	    Iterator<Exception> i = exceptions.iterator();
-	    while (true) {
-		Exception foo = i.next();
-	    }
-	} catch (NoSuchElementException e) {
+		// Version 1 : Horrible abuse of exceptions. Don't ever do this!
+		try {
+			int i = 0;
+			// while (true)
+			// range[i++].climb();
+		} catch (ArrayIndexOutOfBoundsException e) {
+		}
+
+		// Version 2
+		// for (Mountain m : range)
+		// m.climb();
+
+		// Version 3
+		for (Iterator<Exception> i = exceptions.iterator(); i.hasNext();) {
+			Exception foo = i.next();
+		}
+
+		// Version 4
+		// If Iterator lacked the hasNext method, clients would be forced to do this
+		// instead: Do not use this hideous code for iteration over a collection!
+		try {
+			Iterator<Exception> i = exceptions.iterator();
+			while (true) {
+				Exception foo = i.next();
+			}
+		} catch (NoSuchElementException e) {
+		}
 	}
-    }
 }

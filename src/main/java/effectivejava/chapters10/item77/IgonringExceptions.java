@@ -46,22 +46,22 @@ import java.util.concurrent.TimeoutException;
 
 public class IgonringExceptions {
 
-    public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException {
 
-	// Example 1 : Empty catch block ignores exception - Highly suspect!
-	try {
-	} catch (Exception e) {
+		// Example 1 : Empty catch block ignores exception - Highly suspect!
+		try {
+		} catch (Exception e) {
+		}
+
+		// Example 2 : Comment why you are ignoring an exception
+		Future<Integer> f = null; // exec.submit(planarMap::chromaticNumber);
+		int numColors = 4; // Default; guaranteed sufficient for any map
+		try {
+			numColors = f.get(1L, TimeUnit.SECONDS);
+		} catch (TimeoutException | ExecutionException ignored) {
+			// Use default: minimal coloring is desirable, not required
+		}
+
 	}
-
-	// Example 2 : Comment why you are ignoring an exception
-	Future<Integer> f = null; // exec.submit(planarMap::chromaticNumber);
-	int numColors = 4; // Default; guaranteed sufficient for any map
-	try {
-	    numColors = f.get(1L, TimeUnit.SECONDS);
-	} catch (TimeoutException | ExecutionException ignored) {
-	    // Use default: minimal coloring is desirable, not required
-	}
-
-    }
 
 }

@@ -51,17 +51,17 @@ import java.util.Date;
 
 public class DefensiveReadObject {
 
-    // To see the attack in action, run the following program:
-    public static void main(String[] args) {
-	MutablePeriod mp = new MutablePeriod();
-	Period p = mp.period;
-	Date pEnd = mp.end;
-	// Let's turn back the clock
-	pEnd.setYear(78);
-	System.out.println(p);
-	// Bring back the 60s!
-	pEnd.setYear(69);
-	System.out.println(p);
-    }
+	// To see the attack in action, run the following program:
+	public static void main(String[] args) {
+		MutablePeriod mp = new MutablePeriod();
+		Period p = mp.period;
+		Date pEnd = mp.end;
+		// Let's turn back the clock
+		pEnd.setYear(78);
+		System.out.println(p);
+		// Bring back the 60s!
+		pEnd.setYear(69);
+		System.out.println(p);
+	}
 
 }

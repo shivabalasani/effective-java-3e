@@ -26,10 +26,11 @@ import java.util.*;
  */
 // Enum singleton - the preferred approach - Page 311
 public enum ElvisPreferred {
-    INSTANCE;
-    private String[] favoriteSongs = { "Hound Dog", "Heartbreak Hotel" };
+	INSTANCE;
 
-    public void printFavorites() {
-	System.out.println(Arrays.toString(favoriteSongs));
-    }
+	private String[] favoriteSongs = { "Hound Dog", "Heartbreak Hotel" };
+
+	public void printFavorites() {
+		System.out.println(Arrays.toString(favoriteSongs));
+	}
 }

@@ -38,35 +38,35 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class FixedStopThread3 {
 
-    // Broken - requires synchronization!
-    private static volatile int nextSerialNumber = 0;
+	// Broken - requires synchronization!
+	private static volatile int nextSerialNumber = 0;
 
-    // Lock-free synchronization with java.util.concurrent.atomic
-    private static final AtomicLong nextSerialNumBetter = new AtomicLong(0);
+	// Lock-free synchronization with java.util.concurrent.atomic
+	private static final AtomicLong nextSerialNumBetter = new AtomicLong(0);
 
-    public static int generateSerialNumber() {
-	return nextSerialNumber++;
-    }
+	public static int generateSerialNumber() {
+		return nextSerialNumber++;
+	}
 
-    public static long generateSerialNumberBetter() {
-	return nextSerialNumBetter.getAndIncrement();
-    }
+	public static long generateSerialNumberBetter() {
+		return nextSerialNumBetter.getAndIncrement();
+	}
 
-    public static void main(String[] args) throws InterruptedException {
-	Thread backgroundThread = new Thread(() -> {
-	    long i = 0;
-	    while (i < 10000000) { // Adding one more zero will break which is more than 2^32
-		generateSerialNumber();
-		generateSerialNumberBetter();
-		i++;
-	    }
-	});
-	backgroundThread.start();
+	public static void main(String[] args) throws InterruptedException {
+		Thread backgroundThread = new Thread(() -> {
+			long i = 0;
+			while (i < 10000000) { // Adding one more zero will break which is more than 2^32
+				generateSerialNumber();
+				generateSerialNumberBetter();
+				i++;
+			}
+		});
+		backgroundThread.start();
 
-	TimeUnit.SECONDS.sleep(1);
+		TimeUnit.SECONDS.sleep(1);
 
-	System.out.println(nextSerialNumber);
-	System.out.println(nextSerialNumBetter);
-    }
+		System.out.println(nextSerialNumber);
+		System.out.println(nextSerialNumBetter);
+	}
 
 }

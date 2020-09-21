@@ -132,19 +132,19 @@ package effectivejava.chapter9.item68;
 
 public class NamingConvention {
 
-    private static final int SPEED_LIMIT = 60;
+	private static final int SPEED_LIMIT = 60;
 
-    private static int speed() {
-	return 130;
-    }
+	private static int speed() {
+		return 130;
+	}
 
-    private static void generateAudibleAlert(String msg) {
-	System.out.println(msg);
-    }
+	private static void generateAudibleAlert(String msg) {
+		System.out.println(msg);
+	}
 
-    public static void main(String[] args) {
-	if (speed() > 2 * SPEED_LIMIT)
-	    generateAudibleAlert("Watch out for cops!");
-    }
+	public static void main(String[] args) {
+		if (speed() > 2 * SPEED_LIMIT)
+			generateAudibleAlert("Watch out for cops!");
+	}
 
 }

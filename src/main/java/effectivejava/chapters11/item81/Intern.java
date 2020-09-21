@@ -71,22 +71,22 @@ import java.util.concurrent.*;
 // Concurrent canonicalizing map atop ConcurrentMap - Pages 273-274
 public class Intern {
 
-    private static final ConcurrentMap<String, String> map = new ConcurrentHashMap<>();
+	private static final ConcurrentMap<String, String> map = new ConcurrentHashMap<>();
 
-    // Version 1 : Concurrent canonicalizing map atop ConcurrentMap - not optimal
-    public static String internSlow(String s) {
-	String previousValue = map.putIfAbsent(s, s);
-	return previousValue == null ? s : previousValue;
-    }
-
-    // Version 2 : Concurrent canonicalizing map atop ConcurrentMap - faster!
-    public static String intern(String s) {
-	String result = map.get(s);
-	if (result == null) {
-	    result = map.putIfAbsent(s, s);
-	    if (result == null)
-		result = s;
+	// Version 1 : Concurrent canonicalizing map atop ConcurrentMap - not optimal
+	public static String internSlow(String s) {
+		String previousValue = map.putIfAbsent(s, s);
+		return previousValue == null ? s : previousValue;
 	}
-	return result;
-    }
+
+	// Version 2 : Concurrent canonicalizing map atop ConcurrentMap - faster!
+	public static String intern(String s) {
+		String result = map.get(s);
+		if (result == null) {
+			result = map.putIfAbsent(s, s);
+			if (result == null)
+				result = s;
+		}
+		return result;
+	}
 }

@@ -82,31 +82,30 @@ import java.util.NoSuchElementException;
 
 public class ThrowingExceptions<E> {
 
-    /**
-     * {@inheritDoc}
-     *
-     * @implSpec This implementation returns {@code listIterator(0)}.
-     *
-     * @see #listIterator(int)
-     */
-    public ListIterator<E> listIterator() {
-	return null;
-    }
-
-    /**
-     * Returns the element at the specified position in this list.
-     * 
-     * @throws IndexOutOfBoundsException
-     *             if the index is out of range
-     *             ({@code index < 0 || index >= size()}).
-     */
-    public E get(int index) {
-	ListIterator<E> i = listIterator();
-	try {
-	    return i.next();
-	} catch (NoSuchElementException e) {
-	    throw new IndexOutOfBoundsException("Index: " + index);
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @implSpec This implementation returns {@code listIterator(0)}.
+	 *
+	 * @see #listIterator(int)
+	 */
+	public ListIterator<E> listIterator() {
+		return null;
 	}
-    }
+
+	/**
+	 * Returns the element at the specified position in this list.
+	 * 
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 *                                   ({@code index < 0 || index >= size()}).
+	 */
+	public E get(int index) {
+		ListIterator<E> i = listIterator();
+		try {
+			return i.next();
+		} catch (NoSuchElementException e) {
+			throw new IndexOutOfBoundsException("Index: " + index);
+		}
+	}
 
 }

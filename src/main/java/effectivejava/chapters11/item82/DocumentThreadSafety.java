@@ -113,12 +113,12 @@ package effectivejava.chapters11.item82;
 
 public class DocumentThreadSafety {
 
-    // Private lock object idiom - thwarts denial-of-service attack
-    private final Object lock = new Object();
+	// Private lock object idiom - thwarts denial-of-service attack
+	private final Object lock = new Object();
 
-    public void foo() {
-	synchronized (lock) {
+	public void foo() {
+		synchronized (lock) {
+		}
 	}
-    }
 
 }
